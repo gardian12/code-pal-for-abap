@@ -52,7 +52,7 @@ CLASS y_check_missing_ut_assert IMPLEMENTATION.
 
     " Check method on detail
     DATA(token_index) = statement-from.
-    DATA(method_name) = get_token_abs( token_index + 1 ).
+    FINAL(method_name) = get_token_abs( token_index + 1 ).
 
     " Check if method is marked as FOR TESTING
     IF NOT is_testing_method( method_name ).
@@ -70,11 +70,11 @@ CLASS y_check_missing_ut_assert IMPLEMENTATION.
         " If at least one ASSERT was found, all fine we can leave here.
         RETURN.
       ENDIF.
-      token_index = token_index + 1.
+      token_index += 1.
     ENDLOOP.
 
     " Up to here now valid coding was found, so finding has to be raised.
-    DATA(check_configuration) = detect_check_configuration( statement ).
+    FINAL(check_configuration) = detect_check_configuration( statement ).
 
     raise_error( statement_level     = statement-level
                  statement_index     = index

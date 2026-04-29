@@ -1,0 +1,11 @@
+PROCESS BEFORE OUTPUT.
+  MODULE status_0400.
+
+PROCESS AFTER INPUT.
+  MODULE user_command.
+
+PROCESS ON VALUE-REQUEST.
+  FIELD io_check_id MODULE checks_f4help.
+
+PROCESS ON HELP-REQUEST.
+  FIELD io_check_id MODULE checks_f1help.
